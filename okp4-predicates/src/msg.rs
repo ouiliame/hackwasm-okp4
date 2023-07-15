@@ -19,7 +19,7 @@ pub struct RunPredicateResponse {
 }
 #[cw_serde]
 pub enum Term {
-    Var(String),
+    Var(i64),
     Atom(String),
 }
 
