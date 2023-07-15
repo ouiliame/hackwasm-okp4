@@ -1,5 +1,5 @@
 [package]
-name = "cwprolog"
+name = "okp4-predicates"
 version = "0.1.0"
 authors = ["William Chen <william@terran.one>"]
 edition = "2021"
@@ -48,7 +48,6 @@ cw2 = "1.0.1"
 schemars = "0.8.10"
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = { version = "1.0.31" }
-logru = { path="../logru" }
 
 [dev-dependencies]
 cw-multi-test = "0.16.2"

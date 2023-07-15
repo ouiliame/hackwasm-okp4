@@ -38,4 +38,22 @@ pub fn query(_deps: Deps, _env: Env, _msg: QueryMsg) -> StdResult<Binary> {
 }
 
 #[cfg(test)]
-mod tests {}
+mod tests {
+    use logru::{
+        solver::query_dfs,
+        textual::{NamedUniverse, TextualUniverse},
+    };
+
+    #[test]
+    fn test_1() {
+        let mut universe = TextualUniverse::new();
+        let rules_str = r#"
+        true.
+        fail :- \+true.
+        "#;
+        let parsed_rules = universe.parse().parse_rules_str(rules_str).unwrap();
+        for rule in parsed_rules {
+            println!("rule: {:?}", rule);
+        }
+    }
+}

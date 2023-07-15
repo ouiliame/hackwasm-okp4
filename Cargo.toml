@@ -1,4 +1,2 @@
 [workspace]
-members = [
-  "cwprolog",
-]
+members = ["cwprolog", "okp4-predicates"]
