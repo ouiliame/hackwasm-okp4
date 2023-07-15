@@ -9,7 +9,7 @@ pub enum ExecuteMsg {}
 #[cw_serde]
 pub enum QueryMsg {
     PrologExtensionManifest {},
-    RunPredicate { name: String, args: Vec<String> },
+    RunPredicate { name: String, args: Vec<Term> },
 }
 
 #[cw_serde]
@@ -17,9 +17,11 @@ pub struct RunPredicateResponse {
     pub error: Option<String>,
     pub result: Vec<LogicCommand>,
 }
-
 #[cw_serde]
-pub struct Term(pub String);
+pub enum Term {
+    Var(String),
+    Atom(String),
+}
 
 #[cw_serde]
 pub enum LogicCommand {

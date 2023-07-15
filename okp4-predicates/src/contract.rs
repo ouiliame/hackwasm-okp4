@@ -19,7 +19,7 @@ pub fn instantiate(
     _info: MessageInfo,
     _msg: InstantiateMsg,
 ) -> Result<Response, ContractError> {
-    unimplemented!()
+    Ok(Response::default())
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -29,7 +29,7 @@ pub fn execute(
     _info: MessageInfo,
     _msg: ExecuteMsg,
 ) -> Result<Response, ContractError> {
-    unimplemented!()
+    Ok(Response::default())
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -42,15 +42,15 @@ pub fn query(deps: Deps, env: Env, msg: QueryMsg) -> StdResult<Binary> {
     }
 }
 
-fn run_predicate(deps: Deps, env: Env, name: String, args: Vec<String>) -> StdResult<Binary> {
+fn run_predicate(deps: Deps, env: Env, name: String, args: Vec<Term>) -> StdResult<Binary> {
     match name.as_str() {
         "chain_id/1" => {
             let chain_id = env.block.chain_id;
             Ok(to_binary(&RunPredicateResponse {
                 error: None,
                 result: vec![LogicCommand::Unify(
-                    Term(args[0].clone()),
-                    Term(chain_id.to_string()),
+                    args[0].clone(),
+                    Term::Atom(chain_id.to_string()),
                 )],
             })?)
         }
