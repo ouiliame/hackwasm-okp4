@@ -13,10 +13,22 @@ pub enum QueryMsg {
 }
 
 #[cw_serde]
-pub struct RunPredicateResponse {
-    pub error: Option<String>,
-    pub result: Vec<LogicCommand>,
+pub struct PrologExtensionManifestResponse {
+    pub predicates: Vec<PredicateManifest>,
 }
+
+#[cw_serde]
+pub struct PredicateManifest {
+    pub address: String,
+    pub name: String,
+    pub cost: u64,
+}
+
+#[cw_serde]
+pub struct RunPredicateResponse {
+    pub commands: Vec<LogicCommand>,
+}
+
 #[cw_serde]
 pub enum Term {
     Var(i64),
